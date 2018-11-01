@@ -7,6 +7,8 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import com.javaee.jax_rs_jersey.configs.EmailSender;
+
 /**
  * Hello world!
  *
@@ -30,5 +32,5 @@ public class Main
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
         System.in.read();
         server.shutdown();
-}
+    }
 }

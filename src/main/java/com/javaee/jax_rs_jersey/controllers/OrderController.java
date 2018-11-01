@@ -45,10 +45,16 @@ public class OrderController {
     public Response createOrder(Order order, @Context UriInfo uriInfo) {
         logger.info("addProduct: {}", order);
         Order savedOrder = orderService.createOrder(order);
-        logger.debug("Created order with id = ", savedOrder.getId());
-        UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-        builder.path(savedOrder.getId().toString());
-        return Response.created(builder.build()).entity(savedOrder).build();
+        if(savedOrder != null) {
+	        logger.debug("Created order with id = ", savedOrder.getId());
+	        UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+	        builder.path(savedOrder.getId().toString());
+	        return Response.created(builder.build()).entity(savedOrder).build();
+        }else {
+        	UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+	        builder.path("error");
+	        return Response.created(builder.build()).build();
+        }
     }
 
 }
